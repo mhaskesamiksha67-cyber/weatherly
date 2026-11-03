@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weatherly - Weather Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="{{ weather.weather_type }}-page">
+
+<div class="weather-container">
+
+    <nav>
+        <h2>☁️ Weatherly 💗</h2>
+        <a href="/">← Back to Home</a>
+    </nav>
+
+    <div class="weather-main">
+
+        <h1>{{ weather.city }}</h1>
+
+        <p class="condition">{{ weather.condition }}</p>
+
+        <h2 class="temperature">
+            {{ weather.temperature }}°C
+        </h2>
+
+        {% if weather.weather_type == "hot" %}
+
+        <div class="weather-art">
+            <svg viewBox="0 0 240 190" role="img" aria-label="Cute smiling hot sun">
+                <g stroke="#F6B84B" stroke-width="8" stroke-linecap="round">
+                    <path d="M120 8V25 M120 165V182 M28 95H45 M195 95H212"/>
+                    <path d="M54 29L66 42 M174 148L187 161 M54 161L67 148 M174 42L187 29"/>
+                </g>
+                <circle cx="120" cy="95" r="65" fill="#FFD76A"/>
+                <circle cx="120" cy="95" r="55" fill="#FFE58F"/>
+                <circle cx="98" cy="85" r="5" fill="#65466F"/>
+                <circle cx="142" cy="85" r="5" fill="#65466F"/>
+                <circle cx="82" cy="105" r="10" fill="#FFA5B8" opacity=".8"/>
+                <circle cx="158" cy="105" r="10" fill="#FFA5B8" opacity=".8"/>
+                <path d="M103 111 Q120 129 137 111" fill="none" stroke="#65466F" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+        </div>
+
+        {% elif weather.weather_type == "cold" %}
+
+        <div class="weather-art">
+            <svg viewBox="0 0 240 190" role="img" aria-label="Cute shivering snow cloud">
+                <g stroke="#72BCEB" stroke-width="5" stroke-linecap="round">
+                    <path d="M120 12V32 M110 22L130 22 M120 12L110 22 M120 12L130 22"/>
+                    <path d="M38 72V92 M28 82H48 M38 72L28 82 M38 72L48 82"/>
+                    <path d="M198 65V85 M188 75H208 M198 65L188 75 M198 65L208 75"/>
+                </g>
+                <path d="M55 128 Q40 126 40 105 Q40 82 64 80 Q72 45 108 50 Q132 27 158 52 Q193 49 198 83 Q218 92 208 117 Q207 137 185 138H63Q48 138 55 128Z" fill="#B9E3FF" stroke="#76BCEB" stroke-width="4"/>
+                <circle cx="95" cy="94" r="5" fill="#554C85"/>
+                <circle cx="145" cy="94" r="5" fill="#554C85"/>
+                <circle cx="80" cy="108" r="9" fill="#F6A8C5"/>
+                <circle cx="160" cy="108" r="9" fill="#F6A8C5"/>
+                <path d="M108 112 Q120 124 132 112" fill="none" stroke="#554C85" stroke-width="4" stroke-linecap="round"/>
+                <path d="M100 139L94 151 M140 139L146 151" stroke="#76BCEB" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+        </div>
+
+        {% elif weather.weather_type == "rainy" %}
+
+        <div class="weather-art">
+            <svg viewBox="0 0 240 190" role="img" aria-label="Cute rainy cloud with raindrops">
+                <path d="M45 108 Q30 103 36 83 Q42 63 65 65 Q77 31 112 43 Q142 19 166 49 Q204 43 208 78 Q224 100 198 114Z" fill="#C9B9FF" stroke="#9679D9" stroke-width="4"/>
+                <circle cx="92" cy="83" r="5" fill="#554C85"/>
+                <circle cx="145" cy="83" r="5" fill="#554C85"/>
+                <circle cx="76" cy="96" r="9" fill="#F4A8C8"/>
+                <circle cx="161" cy="96" r="9" fill="#F4A8C8"/>
+                <path d="M105 102 Q119 113 133 102" fill="none" stroke="#554C85" stroke-width="4" stroke-linecap="round"/>
+                <g fill="#75C9F4">
+                    <path d="M72 130 Q58 150 72 154 Q87 150 72 130Z"/>
+                    <path d="M120 128 Q106 148 120 152 Q135 148 120 128Z"/>
+                    <path d="M168 130 Q154 150 168 154 Q183 150 168 130Z"/>
+                </g>
+            </svg>
+        </div>
+
+        {% else %}
+
+        <div class="weather-art">
+            <svg viewBox="0 0 240 190" role="img" aria-label="Cute smiling sun behind cloud">
+                <circle cx="150" cy="68" r="42" fill="#FFD76A"/>
+                <circle cx="138" cy="63" r="4" fill="#65466F"/>
+                <circle cx="162" cy="63" r="4" fill="#65466F"/>
+                <path d="M140 77 Q150 88 160 77" fill="none" stroke="#65466F" stroke-width="3" stroke-linecap="round"/>
+                <path d="M40 135 Q25 130 31 108 Q37 86 59 87 Q70 55 105 62 Q128 42 150 70 Q178 65 190 92 Q214 102 202 126 Q198 141 180 141H51Z" fill="#D6D0FF" stroke="#A69BEA" stroke-width="4"/>
+                <circle cx="91" cy="104" r="4" fill="#554C85"/>
+                <circle cx="132" cy="104" r="4" fill="#554C85"/>
+                <path d="M101 115 Q112 125 123 115" fill="none" stroke="#554C85" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+        </div>
+
+        {% endif %}
+
+        <h3>{{ weather.message }}</h3>
+
+    </div>
+
+    <div class="details">
+
+        <div class="detail-card pink">
+            <span>💧</span>
+            <h3>Humidity</h3>
+            <p>{{ weather.humidity }}%</p>
+        </div>
+
+        <div class="detail-card lavender">
+            <span>💨</span>
+            <h3>Wind Speed</h3>
+            <p>{{ weather.wind }} m/s</p>
+        </div>
+
+        <div class="detail-card blue">
+            <span>🌡️</span>
+            <h3>Feels Like</h3>
+            <p>{{ weather.feels }}°C</p>
+        </div>
+
+    </div>
+
+    <footer>Stay positive, stay Weatherly! 💗</footer>
+
+</div>
+
+</body>
+</html>

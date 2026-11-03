@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weatherly - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="home-page">
+
+<div class="home-container">
+
+    <nav>
+        <h2>☁️ Weatherly 💗</h2>
+        <span>Home</span>
+    </nav>
+
+    <section class="hero">
+
+        <div class="hero-text">
+
+            <p class="small-heading">A LITTLE WEATHER MAGIC ✨</p>
+
+            <h1>Hello Sunshine! 🌷</h1>
+
+            <h2>Check the Weather of Your City</h2>
+
+            <p>
+                Sunny, rainy or cloudy...
+                <br>
+                We've got you covered!
+            </p>
+
+            <form action="/weather" method="POST">
+
+                <input
+                    type="text"
+                    name="city"
+                    placeholder="Enter your city name..."
+                    required
+                >
+
+                <button type="submit">
+                    Get Weather 💗
+                </button>
+
+            </form>
+
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+
+        </div>
+
+        <div class="hero-picture">
+            <div class="sun">☀️</div>
+            <div class="cloud">☁️</div>
+            <div class="cat">🐱</div>
+            <div class="rainbow">🌈</div>
+        </div>
+
+    </section>
+
+    <footer>
+        Made with 💗 for a brighter day!
+    </footer>
+
+</div>
+
+</body>
+</html>
